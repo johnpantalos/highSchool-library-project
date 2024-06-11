@@ -1,15 +1,15 @@
 <?php
 
-// SQL to create GramUsers table
-$sql_GramUsers = "CREATE TABLE IF NOT EXISTS GramUsers (
+// SQL to create Admins table
+$sql_Admins = "CREATE TABLE IF NOT EXISTS Admins (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 
-if ($conn->query($sql_GramUsers) === TRUE) {
-    echo '<p style="text-align: center;"> Table GramUsers created successfully.</p>';
+if ($conn->query($sql_Admins) === TRUE) {
+    echo '<p style="text-align: center;"> Table Admins created successfully.</p>';
 } else {
     echo '<p style="text-align: center;">' . $conn->error . '</p>'; 
 }
