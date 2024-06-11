@@ -1,15 +1,7 @@
 <?php
 
-// Database configuration
-include "database_config.php"; // Defines the variables :  $servername, $username, $password, $dbname
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Database configuration and connection
+include "database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -20,17 +12,19 @@ $result_student = $conn->query($sql_student);
 
 if ($result_student->num_rows > 0) {
     // Student found
-    header("Location: student_dashboard.php");
+    $row = $result_student->fetch_assoc();
+    header("Location: student_dashboard.php?id=" . $row['id']);
     exit();
 }
 
 // Check admins table
-$sql_admin = "SELECT * FROM GramUsers WHERE username='$username' AND password='$password'";
+$sql_admin = "SELECT * FROM Admins WHERE username='$username' AND password='$password'";
 $result_admin = $conn->query($sql_admin);
 
 if ($result_admin->num_rows > 0) {
     // admin found
-    header("Location: admin_dashboard.php");
+    $row = $result_admin->fetch_assoc();
+    header("Location: admin_dashboard.php?id=" . $row['id']);
     exit();
 }
 

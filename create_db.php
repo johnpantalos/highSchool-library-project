@@ -1,7 +1,11 @@
 <?php
 
-// Database configuration
-include "database_config.php"; // Defines the variables :  $servername, $username, $password, $dbname
+// Database configuration and connection
+$servername = "localhost";
+$username = "root"; // Default XAMPP username
+$password = ""; // Default XAMPP password is empty
+$dbname = "highschool_library";
+// You can easily change these variables and work with your own login parameters
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);

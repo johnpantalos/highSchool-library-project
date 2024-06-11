@@ -1,17 +1,11 @@
 <?php
 
-include 'database_config.php';
+// Database configuration and connection
+include 'database_connection.php';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Insert user into the database
-$sql = "INSERT INTO GramUsers (username, password) VALUES ('admin', 'admin')";
+$sql = "INSERT INTO Admins (username, password) VALUES ('admin', 'admin')";
 
 if ($conn->query($sql) === TRUE) {
     echo '<p style="text-align: center;"> Admin account created successfully </p>';
