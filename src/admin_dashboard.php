@@ -40,6 +40,7 @@ $id = intval($_GET['id']);
         <!-- <a href="logout.php">Logout</a> -->
         <?php echo "<a href='./users/register.php?id=" . $id . "'>Add New User</a>"; ?>
         <?php echo "<a href='./books/register_book.php?id=" . $id . "'>Books Register</a>"; ?>
+        <?php echo "<a href='./books/modify_books.php?id=" . $id . "'>Books Managment</a>"; ?>
         
         <br>
         <table border="1">
