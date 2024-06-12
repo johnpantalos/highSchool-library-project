@@ -39,12 +39,13 @@ $id = intval($_GET['id']);
         <h2>Manage Users</h2>
         <!-- <a href="logout.php">Logout</a> -->
         <?php echo "<a href='./users/register.php?id=" . $id . "'>Add New User</a>"; ?>
-        <?php echo "<a href='./books/register_book.php?id=" . $id . "'>Books Managment</a>"; ?>
+        <?php echo "<a href='./books/register_book.php?id=" . $id . "'>Books Register</a>"; ?>
         
         <br>
         <table border="1">
             <tr>
                 <th>ID</th>
+                <th>Name</th>
                 <th>Username</th>
                 <th>Action</th>
             </tr>
@@ -53,6 +54,7 @@ $id = intval($_GET['id']);
                 while($row = $result_students->fetch_assoc()) {
                     echo "<tr>
                             <td>" . $row['id'] . "</td>
+                            <td>" . $row['name'] . "</td>
                             <td>" . $row['username'] . "</td>
                             <td>
                                 <a href='./users/edit_user.php?id=" . $row['id']."'>Edit</a> | 

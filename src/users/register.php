@@ -25,6 +25,9 @@
 
         <h2>Register</h2>
         <form action="register_action.php" method="POST">
+            <label for="name">Name: </label>
+            <input type="text" name="name" required><br>
+            
             <label for="username">Username: </label>
             <input type="text" name="username" required><br>
             

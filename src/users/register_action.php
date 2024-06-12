@@ -55,8 +55,9 @@ else
 
         if($result_students->num_rows == 0)
         {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') $name = $_POST['name'];
             // Insert user into the database
-            $sql = "INSERT INTO Students (username, password) VALUES ('$username', '$password')";
+            $sql = "INSERT INTO Students (name, username, password) VALUES ('$name','$username', '$password')";
             
             if ($conn->query($sql) === TRUE) 
             {

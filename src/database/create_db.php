@@ -41,7 +41,7 @@ $conn->close();
 </head>
 <body>
     <main>
-        <p style="text-align: center;"> <a href="./index.php">Go Back</a> </p>
+        <p style="text-align: center;"> <a href="../../index.php">Go Back</a> </p>
     </main>
 </body>
 </html>
