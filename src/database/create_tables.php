@@ -54,7 +54,9 @@ $sql_borrow_records = "CREATE TABLE IF NOT EXISTS BorrowRecords (
     book_id INT(6) UNSIGNED NOT NULL,
     borrow_date DATE NOT NULL,
     due_date DATE NOT NULL,
-    return_date DATE
+    return_date DATE,
+    FOREIGN KEY (student_id) REFERENCES Students(id),
+    FOREIGN KEY (book_id) REFERENCES Books(id)
 )";
 
 if ($conn->query($sql_borrow_records) === TRUE) {

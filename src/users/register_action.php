@@ -1,7 +1,7 @@
 <?php
 
 // Database configuration and connection
-include "database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
+include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {

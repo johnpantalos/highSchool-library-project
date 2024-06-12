@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Login</title>
+    <script>
+        function showPassword() {
+            var x = document.getElementById("pwd");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </head>
 <body>
     
@@ -17,7 +27,8 @@
             <label for="username">Username: </label>
             <input type="text" name="username" required><br>
             <label for="password">Password: </label>
-            <input type="password" name="password" required><br>
+            <input type="password" name="password" id="pwd" required><br>
+            <input type="checkbox" onclick="showPassword()">Show Password
             <input type="submit" value="Login">
         </form>
     </div>

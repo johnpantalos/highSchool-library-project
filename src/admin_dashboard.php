@@ -2,7 +2,7 @@
 session_start();
 
 // Database configuration and connection
-include "database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
+include "./database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
 // Check if the page has been reloaded
 if (!isset($_SESSION['reloaded'])) 
@@ -38,7 +38,8 @@ $id = intval($_GET['id']);
     <body>
         <h2>Manage Users</h2>
         <!-- <a href="logout.php">Logout</a> -->
-        <?php echo "<a href='register.php?id=" . $id . "'>Add New User</a>"; ?>
+        <?php echo "<a href='./users/register.php?id=" . $id . "'>Add New User</a>"; ?>
+        <?php echo "<a href='./books/register_book.php?id=" . $id . "'>Books Managment</a>"; ?>
         
         <br>
         <table border="1">
@@ -54,8 +55,8 @@ $id = intval($_GET['id']);
                             <td>" . $row['id'] . "</td>
                             <td>" . $row['username'] . "</td>
                             <td>
-                                <a href='edit_user.php?id=" . $row['id']."'>Edit</a> | 
-                                <a href='delete_user.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure?\")'>Delete</a>
+                                <a href='./users/edit_user.php?id=" . $row['id']."'>Edit</a> | 
+                                <a href='./users/delete_user.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure?\")'>Delete</a>
                             </td>
                         </tr>";
                 }
@@ -64,5 +65,6 @@ $id = intval($_GET['id']);
             }
             ?>
         </table>
+        <a href="./users/logout.php">Logout</a> 
     </body>
 </html>
