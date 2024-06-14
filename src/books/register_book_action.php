@@ -17,7 +17,8 @@ $sql = "INSERT INTO Books (title, author, copies_available) VALUES ('$title', '$
 if ($conn->query($sql) === TRUE) 
 {
     // Redirect two pages back
-    echo '<script language="JavaScript" type="text/javascript">history.go(-2);</script>';
+    // echo '<script language="JavaScript" type="text/javascript">history.go(-2);</script>';
+    echo "Book successfully registered !";
     exit();
 } 
 else 

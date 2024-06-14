@@ -1,9 +1,4 @@
 <?php
-session_start();
-// if (!isset($_SESSION['username'])) {
-//     header("Location: login.html");
-//     exit();
-// }
 
 // Database configuration and connection 
 include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname

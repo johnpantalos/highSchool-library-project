@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $student_id = $_POST['student'];
     $date_borrowed = $_POST['date'];
 }
+
 // Date
 // Create a DateTime object from the submitted date
 $dateObj = new DateTime($date_borrowed);
@@ -48,6 +49,7 @@ if($copies_of_book > 0){
 
             if ($conn->query($sql_update_copies_available) === TRUE) 
             {
+                // Update borrowed books count + 1
                 $borrowed_books_count = $borrowed_books_count + 1;
                 $sql_update_borrowed_books_in_student = "UPDATE Students SET borrowed_books_count='$borrowed_books_count' WHERE id='$student_id'";
                 
@@ -71,8 +73,6 @@ if($copies_of_book > 0){
         {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
-
-        
     }
     else
     {
