@@ -25,7 +25,7 @@
         </script>
 </head>
 <body>
-    <div class="container-big-2">
+    <div class="container-big-2 orange_bg">
         <h2>Register</h2>
         <form action="register_action.php" class="register-user-form" method="POST">
             <label for="name">Name: </label>

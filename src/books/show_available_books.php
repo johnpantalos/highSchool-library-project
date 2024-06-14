@@ -7,18 +7,13 @@
     $sql = "SELECT * FROM Books";
     $result_books = $conn->query($sql);
 
-    $conn->close();
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="../css/style.css">
-        <style type="text/css">
-            html {
-                background-image: none;
-            }
-        </style>
+        <style type="text/css"> html { background-image: none; } </style>
         <title>Show Books</title>
     </head>
     <body>
@@ -33,7 +28,8 @@
             <?php
                 if ($result_books->num_rows > 0) 
                 { 
-                    while($row = $result_books->fetch_assoc()) { 
+                    while($row = $result_books->fetch_assoc()) 
+                    { 
                         echo "<tr>
                                 <td>" . $row['id'] . "</td>
                                 <td>" . $row['author'] . "</td>
@@ -46,6 +42,8 @@
                 {
                     echo "<p style='text-align: center; color: black;'>No Books Found !</p>";
                 }
+                
+                $conn->close();
             ?>
             </table>
         </div>

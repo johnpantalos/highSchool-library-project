@@ -1,7 +1,7 @@
 <?php
 
 // Database configuration and connection
-include 'database_connection.php';
+include './database_connection.php';
 
 // Insert user into the database
 $sql = "INSERT INTO Books (title, author, copies_available) VALUES 
@@ -35,14 +35,13 @@ if ($conn->query($sql) === TRUE)
     $sql = "SELECT * FROM Books";
     $result_books = $conn->query($sql);
 
-    include '../books/show_available_books.php';
+    // include '../books/show_available_books.php';
 } 
 else 
 {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$conn->close();
 
 ?>
 
@@ -52,10 +51,32 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <style type="text/css">
+            .container { background-color: #007bff00; }
+            .open-btn {background-color: #ad6823;}
+        </style>
     <title>Create a list of books for testing</title>
 </head>
 <body>
     <main>
+        <!-- IFRAME 1 -->
+        <button class="open-btn" onclick="openPopup()"><b>Show Books</b></button>
+                    
+        <div class="popup-container" id="popupContainer">
+            <div class="iframe-container">
+                <button class="close-btn" onclick="closePopup()">×</button>
+                <iframe src="../books/show_available_books.php"></iframe>
+            </div>
+        </div>
+        <script>
+            function openPopup() {
+                document.getElementById('popupContainer').classList.add('show');
+            }
+
+            function closePopup() {
+                document.getElementById('popupContainer').classList.remove('show');
+            }   
+        </script>
         <p style="text-align: center;"> <a href="../../index.php">Go Back</a> </p>
     </main>
 </body>

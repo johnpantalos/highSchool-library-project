@@ -17,18 +17,14 @@
 <html>
     <head>
         <link rel="stylesheet" href="../css/style.css">
-        <style type="text/css">
-            html {
-                background-image: none;
-            }
-        </style>
+        <style type="text/css"> html { background-image: none; } </style>
         <title>Show Books</title>
     </head>
     <body>
         <div class="container_fluid">
             <table border='1' style='margin-left: auto; margin-right: auto; width: 100%;'>
                 <tr>
-                    <th>ID</th>
+                    <th>Record ID</th>
                     <th>Student ID</th>
                     <th>Book ID</th>
                     <th>Book Title</th>
@@ -56,7 +52,9 @@
                                     <td> <a href='./return_borrowed_book.php?id=" . $row['id'] . "'>Return Now</a> </td>
                                 </tr>";
                         }
-                    } else {
+                    } 
+                    else 
+                    {
                         echo "<p style='text-align: center; color: black;'>No borrowed books found !</p>";    
                     }
                 ?>

@@ -30,7 +30,8 @@ if($result_student->num_rows > 0) $student = $result_student->fetch_assoc();
     </head>
     <body>
         <header>
-            <span> Student's Dashboard </span>
+            <a href="../index.php">Home</a>
+            <span class="text-center"> &nbsp; Student's Dashboard </span>
             <div class="header-right">
                 <a href="./users/logout.php">Logout</a>
             </div>

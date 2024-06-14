@@ -9,17 +9,11 @@ $result_bor_books = $conn->query($sql);
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="../css/style.css">
-        <style type="text/css">
-            html {
-                background-image: none;
-            }
-        </style>
+        <style type="text/css"> html { background-image: none; }</style>
         <title>Show Books</title>
     </head>
     <body>
@@ -39,8 +33,8 @@ $result_bor_books = $conn->query($sql);
             <?php
                 if ($result_bor_books->num_rows > 0) 
                 { 
-                    while($row = $result_bor_books->fetch_assoc()) { 
-                
+                    while($row = $result_bor_books->fetch_assoc()) 
+                    { 
                         $st_id = $row['student_id']; 
                         $sql_student = "SELECT * FROM Students WHERE id='$st_id'";
                         $result_student = $conn->query($sql_student);
@@ -63,7 +57,9 @@ $result_bor_books = $conn->query($sql);
                                 <td> <a href='./return_borrowed_book.php?id=" . $row['id'] . "'>Return Now</a> </td>
                             </tr>";
                     }
-                } else {
+                } 
+                else 
+                {
                     echo "<p style='text-align: center; color: black;'>No Borrowed Books Found !</p>";
                 }
                 

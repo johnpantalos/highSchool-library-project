@@ -4,23 +4,6 @@ session_start();
 // Database configuration and connection
 include "./database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
-// Check if the page has been reloaded
-if (!isset($_SESSION['reloaded'])) 
-{
-    $_SESSION['reloaded'] = true;
-    // Embed JavaScript to reload the page on load (helps showing the changes when edit users)
-    echo '<script type="text/javascript">
-        window.onload = function() {
-            location.reload();
-        };
-    </script>';
-} 
-else 
-{
-    // Unset the session variable to avoid infinite loop
-    unset($_SESSION['reloaded']);
-}
-
 $id = intval($_GET['id']);
 
 ?>
@@ -39,7 +22,8 @@ $id = intval($_GET['id']);
     </head>
     <body>
         <header>
-            <span> Admin's Dashboard </span>
+            <a href="../index.php">Home</a>
+            <span> &nbsp; Admin's Dashboard </span>
             <div class="header-right">
                 <a href="./users/logout.php">Logout</a>
             </div>
@@ -50,7 +34,7 @@ $id = intval($_GET['id']);
                 <h2 style="text-align: center;">Manage Users</h2>
 
                 <!-- IFRAME 1 -->
-                <button class="open-btn" onclick="openPopup('popup1')">Book Management</button>
+                <button class="open-btn" onclick="openPopup('popup1')">Available Books</button>
                     
                 <div class="popup-container" id="popup1">
                     <div class="iframe-container">
@@ -70,7 +54,7 @@ $id = intval($_GET['id']);
                 </div>
 
                 <!-- IFRAME 3 -->
-                <button class="open-btn" onclick="openPopup('popup3')">Show All Borrowed Books</button>
+                <button class="open-btn" onclick="openPopup('popup3')">All Borrowed Books</button>
 
                 <div class="popup-container" id="popup3">
                     <div class="iframe-container">

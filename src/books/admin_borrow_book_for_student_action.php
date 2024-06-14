@@ -16,10 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 // Date
 // Create a DateTime object from the submitted date
 $dateObj = new DateTime($date_borrowed);
+
 // Add one month to the date
 $dateObj->modify('+1 month');
+
 // Format the new date to a string
 $newDate = $dateObj->format('Y-m-d');
+
 
 // Fetch Book 
 $sql_b = "SELECT * FROM Books WHERE id='$book_id'";
@@ -35,8 +38,10 @@ if($result_student->num_rows > 0) $student = $result_student->fetch_assoc();
 $copies_of_book = intval($book_want_to_borrow['copies_available']);
 $borrowed_books_count = intval($student['borrowed_books_count']);
 
-if($copies_of_book > 0){
-    if($borrowed_books_count < 3){
+if($copies_of_book > 0)
+{
+    if($borrowed_books_count < 3)
+    {
         // Insert user into the database
         $sql_borr = "INSERT INTO BorrowRecords (student_id, book_id, borrow_date, due_date, return_date) 
         VALUES ('$student_id', '$book_id' , '$date_borrowed', '$newDate', 'null')";

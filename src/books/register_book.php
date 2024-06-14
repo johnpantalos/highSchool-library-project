@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <div class="container-big rounded">     
+    <div class="container-big rounded orange_bg">     
         <h2>Register Book</h2>
         <form action="register_book_action.php" class="register-book-form" method="POST">
             <label for="title">Title: </label>

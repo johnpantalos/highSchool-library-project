@@ -44,7 +44,7 @@ $conn->close();
         </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-big-2 orange_bg">
         <h2>Borrow Book For Student</h2>
         <form action="admin_borrow_book_for_student_action.php" class="borrow-book-form" method="POST">
             <label for="ID">ID: </label>
@@ -61,13 +61,18 @@ $conn->close();
             
             <label for="student"> Please select the student who wants to borrow this book: </label>
             <?php 
-                if ($result_students->num_rows > 0) {
+                if ($result_students->num_rows > 0) 
+                {
                     echo '<select name="student">';
                     while($row = $result_students->fetch_assoc()) 
                     {
                         echo '<option value="' . $row['id'] . '" id="' . $row['id'] . '">' . htmlspecialchars($row['name']) . '</option>';   
                     }
                     echo "</select>";
+                }
+                else
+                {
+                    echo "No students found";
                 }
             ?>
             <br>

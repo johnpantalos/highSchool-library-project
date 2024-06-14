@@ -60,7 +60,7 @@ $conn->close();
     </script>
 </head>
 <body>
-    <div class="container-big">
+    <div class="container-big-2 orange_bg">
         <h2>Edit User</h2>
         
         <p>Change user's data</p>

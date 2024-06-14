@@ -16,18 +16,15 @@ html {
 /* Body Styling */
 body {
     font-family: Arial, sans-serif;
-    /* background-color: #f4f4f4; */
     color: #333;
     line-height: 1.6;
     width: 100%;
     height: 100%;
-    /* padding: 20px; */
 
-/* 
     animation: fadeInAnimation ease .5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards; 
-*/
+
 }
 
 @keyframes fadeInAnimation {
@@ -46,7 +43,6 @@ body h1, body h2, body h3, body h4, body h5, body p{
 }
 
 .container-fluid {
-    /* background-color: #ffffff91; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     padding: 20px;
@@ -62,6 +58,8 @@ body h1, body h2, body h3, body h4, body h5, body p{
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff91;
+    /* background-color: #c477295a; */
+
     width: 70%;
     height: 80%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -186,9 +184,11 @@ header a {
     flex-direction: column; */
     color: #fff;
     text-decoration: none;
+    background-color: #ad6823;
     padding: 10px 15px;
     font-size: 16px;
     font-weight: bold;
+    border-radius: 5px;
 }
 
 /* Style the active/current link*/
@@ -227,7 +227,7 @@ header a:hover {
 .edit-user-form-by-student {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 2px;
     margin: 20px 0;
     line-height: 2;
 }
@@ -248,10 +248,10 @@ header a:hover {
 }
 
 .borrow-book-form {
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
+    flex-direction: column;
     margin: 20px 0;
-    line-height: 1.4;
+    line-height: 1;
 }
 
 form label {
@@ -320,32 +320,6 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Buttons
-.button {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 1em;
-    border: none;
-    background-color: #333;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.button:hover {
-    background-color: #575757;
-} */
-
-/* Utility Classes */
-.text-center {
-    text-align: center;
-}
-
-.rounded {
-    border-radius: 20px;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar {
@@ -364,9 +338,22 @@ tr:hover {
     }
 }
 
+p a {
+    color: #000000;
+    text-decoration: none;
+    background-color: #ad6823;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 4em;
+    border-radius: 5px;
 
+}
 
-
+p a:hover {
+    background-color: #8d551e;
+    border-radius: 5px;
+}
 
 /* Style the footer */
 footer {
@@ -381,9 +368,7 @@ footer {
     padding: 0%;
 }
 
-
-
-/* For iframe */
+/* Style the iframe */
 .popup-container {
     position: fixed;
     top: 0;
@@ -478,4 +463,16 @@ iframe {
     color: rgb(0, 238, 255);
 }
 
-/* for iframe END */
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.rounded {
+    border-radius: 20px;
+}
+
+.orange_bg {
+    background-color: #c477295a;
+}
