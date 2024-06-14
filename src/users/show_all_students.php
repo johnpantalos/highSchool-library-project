@@ -1,13 +1,21 @@
 <?php 
+    session_start();
 
     // Database configuration and connection
     include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
-
+    if (!isset($_SESSION['first_load'])) {
+        // This is the first load
+        $_SESSION['first_load'] = true;
+        
+        // Reload the page
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    }
+    
     // Fetch all Students
     $sql = "SELECT * FROM Students";
     $result_students = $conn->query($sql);
 
-    $conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +54,8 @@
                 } else {
                     echo "<p style='text-align: center;'>No students found !</p>";
                 }
+                
+                $conn->close();
             ?>
             </table>
         </div>
