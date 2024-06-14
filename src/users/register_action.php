@@ -6,6 +6,7 @@ include "../database/database_connection.php"; // Defines the variables :  $serv
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     // Get POST data
+    $name = $_POST['name'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirmpassword'];
@@ -28,12 +29,11 @@ else
         if($result_students->num_rows == 0)
         {
             // Insert user into the database
-            $sql = "INSERT INTO Admins (username, password) VALUES ('$username', '$password')";
+            $sql = "INSERT INTO Admins (name, username, password) VALUES ('$name','$username', '$password')";
 
             if ($conn->query($sql) === TRUE) 
             {
-                // Redirect two pages back
-                echo '<script language="JavaScript" type="text/javascript">history.go(-2);</script>';
+                echo "<p style='text-align: center; color: black;'>Student registered successfully !</p>";
                 exit();
             } 
             else 
@@ -55,14 +55,12 @@ else
 
         if($result_students->num_rows == 0)
         {
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') $name = $_POST['name'];
             // Insert user into the database
             $sql = "INSERT INTO Students (name, username, password) VALUES ('$name','$username', '$password')";
             
             if ($conn->query($sql) === TRUE) 
             {
-                // Redirect two pages back
-                echo '<script language="JavaScript" type="text/javascript">history.go(-2);</script>';
+                echo '<p style"text-align: center; color: black">Student registered successfully !</p>';
                 exit();
             } 
             else 

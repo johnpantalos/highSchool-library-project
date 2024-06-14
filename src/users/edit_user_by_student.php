@@ -24,13 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Update user details
     $sql = "UPDATE Students SET name='$name', username='$username', password='$password' WHERE id='$id'";
 
-    if ($conn->query($sql) === TRUE) {
-        
-        // Redirect using JavaScript to go back 2 pages
-        // echo '<script type="text/javascript"> window.history.go(-1); </script>';
+    if ($conn->query($sql) === TRUE) 
+    {
         echo "<p style='text-align: center; color: black;'>Account changed successfully !</p>";
         exit();
-    } else {
+    } 
+    else 
+    {
         echo "Error updating record: " . $conn->error;
     }
 }
@@ -44,9 +44,13 @@ $conn->close();
     <title>Edit User</title>
     <link rel="stylesheet" href="../css/style.css">
     <style type="text/css">
-        html {
+        html{
             background-image: none;
         }
+        body h2, body p{
+            color: black;
+        }
+
     </style>
     <script>
         function showPassword() {
@@ -60,11 +64,10 @@ $conn->close();
     </script>
 </head>
 <body>
-    <div class="container-big">
         <h2>Edit User</h2>
         
         <p>Change user's data</p>
-        <form action="" class="edit-user-form" method="POST">
+        <form action="" class="edit-user-form-by-student" method="POST">
             <label for="name">Name: </label>
             <input type="text" name="name" value="<?php echo $user['name']; ?>" required>
             <label for="username">Username: </label>
@@ -74,6 +77,5 @@ $conn->close();
             <span><input type="checkbox" onclick="showPassword()"> Show Password</span>
             <input type="submit" value="Update">
     </form>
-    </div>
 </body>
 </html>

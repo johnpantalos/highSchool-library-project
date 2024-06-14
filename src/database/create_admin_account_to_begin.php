@@ -5,11 +5,11 @@ include 'database_connection.php';
 
 
 // Insert user into the database
-$sql = "INSERT INTO Admins (username, password) VALUES ('admin', 'admin')";
+$sql = "INSERT INTO Admins (name, username, password) VALUES ('admin', 'admin', 'admin')";
 
 if ($conn->query($sql) === TRUE) {
     echo '<p style="text-align: center;"> Admin account created successfully </p>';
-    echo '<p style="text-align: center;"> Username: <b>admin</b> , password: <b>admin</b> </p>';
+    echo '<p style="text-align: center;">Name: <b>admin</b> , Username: <b>admin</b> , password: <b>admin</b> </p>';
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

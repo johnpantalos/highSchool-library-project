@@ -17,18 +17,17 @@
     </script>
 </head>
 <body>
-    
-    <div class="container">        
+    <div class="container rounded">        
         <h1>Welcome !</h1>
         <p>Please sign in for your best experience.</p>
         
         <h2>Login</h2>
-        <form action="authenticate.php" method="POST">
+        <form action="authenticate.php" class="login-form" method="POST">
             <label for="username">Username: </label>
-            <input type="text" name="username" required><br>
+            <input type="text" name="username" required>
             <label for="password">Password: </label>
-            <input type="password" name="password" id="pwd" required><br>
-            <input type="checkbox" onclick="showPassword()">Show Password
+            <input type="password" name="password" id="pwd" required>
+            <span><input type="checkbox" onclick="showPassword()"> Show Password</span>
             <input type="submit" value="Login">
         </form>
     </div>
