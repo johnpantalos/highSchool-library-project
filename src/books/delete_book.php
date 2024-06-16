@@ -23,7 +23,7 @@
     } 
     else 
     {
-        echo '<script>alert("Can\'t delete this book, because there is/was at least one student who has borrowed this book !");</script>';
+        echo '<script>alert("Can\'t delete this book, because there is/was at least one student who has/ηαδ borrowed this book !");</script>';
         // Redirect using JavaScript to go back 1 page
         echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
         // echo "<p style='text-align: center;'>Can't delete this book, because there is at least one student who has borrowed this book !</p>";
