@@ -1,27 +1,33 @@
 <?php
+    session_start();
 
-// Database configuration and connection 
-include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
+    if (!isset($_SESSION['id'])) {
+        header("Location: ../users/login.php");
+        exit();
+    }
 
-// Get user ID from URL
-$book_id = intval($_GET['book_id']);
+    // Database configuration and connection
+    include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
-// Delete user
-$sql = "DELETE FROM Books WHERE id='$book_id'";
+    // Get user ID from URL
+    $book_id = intval($_GET['book_id']);
 
-if ($conn->query($sql) === TRUE) 
-{
-    // Redirect using JavaScript to go back 1 page
-    echo '<script type="text/javascript"> window.history.go(-1); </script>';
-    exit();
-} 
-else 
-{
-    echo '<script>alert("Can\'t delete this book, because there is at least one student who has borrowed this book !");</script>';
-    // Redirect using JavaScript to go back 1 page
-    echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
-    // echo "<p style='text-align: center;'>Can't delete this book, because there is at least one student who has borrowed this book !</p>";
-}
+    // Delete user
+    $sql = "DELETE FROM Books WHERE id='$book_id'";
 
-$conn->close();
+    if ($conn->query($sql) === TRUE) 
+    {
+        // Redirect using JavaScript to go back 1 page
+        echo '<script type="text/javascript"> window.history.go(-1); </script>';
+        exit();
+    } 
+    else 
+    {
+        echo '<script>alert("Can\'t delete this book, because there is/was at least one student who has borrowed this book !");</script>';
+        // Redirect using JavaScript to go back 1 page
+        echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
+        // echo "<p style='text-align: center;'>Can't delete this book, because there is at least one student who has borrowed this book !</p>";
+    }
+
+    $conn->close();
 ?>

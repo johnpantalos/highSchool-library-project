@@ -1,11 +1,12 @@
 <?php
 session_start();
-// if (!isset($_SESSION['username'])) {
-//     header("Location: login.php");
-//     exit();
-// }
 
-// Database configuration
+if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Database configuration and connection
 include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
 // Get user ID from URL
@@ -14,7 +15,7 @@ $id = $_GET['id'];
 // Fetch user details
 $sql = "SELECT * FROM Students WHERE id='$id'";
 $result = $conn->query($sql);
-$user = $result->fetch_assoc();
+$students = $result->fetch_assoc();
 
 $conn->close();
 ?>
@@ -37,14 +38,14 @@ $conn->close();
     </head>
     <body>
         <h2>Edit User</h2>
-        <p>Change user's data</p>
-        <form action="./users/edit_user_action.php?id=<?php echo $id;?>" class="universal-form" method="POST">
+        <p>Change students's data</p>
+            <form action="./users/edit_user_action.php?id=<?php echo $id;?>" class="universal-form" method="POST">
             <label for="name">Name: </label>
-            <input type="text" name="name" value="<?php echo $user['name']; ?>" required>
+            <input type="text" name="name" value="<?php echo $students['name']; ?>" required>
             <label for="username">Username: </label>
-            <input type="text" name="username" value="<?php echo $user['username']; ?>" required>
+            <input type="text" name="username" value="<?php echo $students['username']; ?>" required>
             <label for="password">Password: </label>
-            <input type="password" name="password" value="<?php echo $user['password']; ?>" id="pwd" required>
+            <input type="password" name="password" value="<?php echo $students['password']; ?>" id="pwd" required>
             <span><input type="checkbox" onclick="showPassword()"> Show Password</span>
             <input type="submit" value="Update">
         </form>

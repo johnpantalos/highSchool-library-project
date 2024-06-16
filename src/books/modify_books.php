@@ -1,18 +1,13 @@
 <?php
 session_start();
 
-include '../database/database_connection.php';
-
-
-if (!isset($_SESSION['first_load'])) {
-    // This is the first load
-    $_SESSION['first_load'] = true;
-    
-    // Reload the page
-    header("Location: " . $_SERVER['PHP_SELF']);
+if (!isset($_SESSION['id'])) {
+    header("Location: ./users/login.php");
     exit();
 }
 
+// Database configuration and connection
+include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
 // Fetch all Books created
 $sql = "SELECT * FROM Books";

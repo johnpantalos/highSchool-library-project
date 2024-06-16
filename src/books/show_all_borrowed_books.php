@@ -1,14 +1,20 @@
-<?php 
+<?php
+    session_start();
 
-// Database configuration and connection
-include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
+    if (!isset($_SESSION['id'])) {
+        header("Location: ../users/login.php");
+        exit();
+    }
 
-// Fetch all Books created
-$sql = "SELECT * FROM BorrowRecords";
-$sql = "SELECT * FROM BorrowRecords ORDER BY id";
+    // Database configuration and connection
+    include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname 
+    
+    // Fetch all Books created
+    $sql = "SELECT * FROM BorrowRecords";
+    // $sql = "SELECT * FROM BorrowRecords ORDER BY id";
 
 
-$result_bor_books = $conn->query($sql);
+    $result_bor_books = $conn->query($sql);
 
 ?>
 
@@ -24,7 +30,6 @@ $result_bor_books = $conn->query($sql);
         <tr>
             <th>ID</th>
             <th>Student ID</th>
-            <th>Student Name</th>
             <th>Book ID</th>
             <th>Book Title</th>
             <th>Borrow Date</th>
@@ -39,11 +44,6 @@ $result_bor_books = $conn->query($sql);
                 { 
                     $url = "./books/return_borrowed_book.php?id=" . $row['id'];
 
-                    $st_id = $row['student_id']; 
-                    $sql_student = "SELECT * FROM Students WHERE id='$st_id'";
-                    $result_student = $conn->query($sql_student);
-                    if($result_student->num_rows > 0) $student = $result_student->fetch_assoc();
-                    
                     $book_id = $row['book_id'];
                     $sql_books = "SELECT * FROM Books WHERE id='$book_id'";
                     $result_books = $conn->query($sql_books);
@@ -52,7 +52,6 @@ $result_bor_books = $conn->query($sql);
                     echo "<tr>
                             <td>" . $row['id'] . "</td>
                             <td>" . $row['student_id'] . "</td>
-                            <td>" . $student['name'] . "</td>
                             <td>" . $row['book_id'] . "</td>
                             <td>" . $book['title'] . "</td>
                             <td>" . $row['borrow_date'] . "</td>

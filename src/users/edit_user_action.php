@@ -1,11 +1,12 @@
 <?php
 session_start();
-// if (!isset($_SESSION['username'])) {
-//     header("Location: login.php");
-//     exit();
-// }
 
-// Database configuration
+if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Database configuration and connection
 include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
 // Get user ID from URL
@@ -32,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo '<script type="text/javascript">history.go(-1);</script>';
         exit();
     } else {
+        echo '<script>alert("Error !");</script>';
         echo "Error updating record: " . $conn->error;
     }
 }

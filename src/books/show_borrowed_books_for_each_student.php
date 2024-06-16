@@ -1,9 +1,15 @@
-<?php 
+<?php
+    session_start();
+
+    if (!isset($_SESSION['id'])) {
+        header("Location: ../users/login.php");
+        exit();
+    }
 
     // Database configuration and connection
     include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
-    
-    $id = intval($_GET['id']);
+
+    $id = $_SESSION['id'];
     
     // Fetch all Books created
     $sql = "SELECT * FROM BorrowRecords WHERE student_id ='$id' AND return_date = '0000-00-00'";

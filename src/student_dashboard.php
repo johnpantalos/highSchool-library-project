@@ -1,10 +1,15 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['id'])) {
+    header("Location: ./users/login.php");
+    exit();
+}
+
 // Database configuration and connection
 include "./database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
-$id = intval($_GET['id']);
+$id = $_SESSION['id'];
 
 // Fetch all Books created
 $sql = "SELECT * FROM Books";
@@ -135,5 +140,8 @@ if($result_student->num_rows > 0) $student = $result_student->fetch_assoc();
                 loadContent(buttons[0].getAttribute('data-content'));
             });
         </script>
+        <?php 
+            $conn->close();
+        ?>
     </body>
 </html>

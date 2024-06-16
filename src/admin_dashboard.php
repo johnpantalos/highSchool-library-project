@@ -1,10 +1,15 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['id'])) {
+    header("Location: ./users/login.php");
+    exit();
+}
+
 // Database configuration and connection
 include "./database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
-$id = intval($_GET['id']);
+$id = $_SESSION['id'];
 
 // Fetch user details
 $sql = "SELECT * FROM Admins WHERE id='$id'";

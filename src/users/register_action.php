@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+    exit();
+}
 
 // Database configuration and connection
 include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
@@ -25,8 +31,9 @@ else
         // Check if this username already exists in Students table
         $sql_check = "SELECT * from Students WHERE username='$username';";
         $result_students = $conn->query($sql_check);
-
-        if($result_students->num_rows == 0)
+        $students = $result_students->fetch_assoc();
+        print_r($students);
+        if($result_students->num_rows < 1)
         {
             // Insert user into the database
             $sql = "INSERT INTO Admins (name, username, password) VALUES ('$name','$username', '$password')";
@@ -35,6 +42,7 @@ else
             {
                 // echo "<p style='text-align: center; color: black;'>Admin registered successfully !</p>";
                 echo '<script>alert("Admin registered successfully !");</script>';
+                echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
                 exit();
             } 
             else 
@@ -54,7 +62,7 @@ else
         $sql_check = "SELECT * from Admins WHERE username='$username';";
         $result_students = $conn->query($sql_check);
 
-        if($result_students->num_rows == 0)
+        if($result_students->num_rows === 0)
         {
             // Insert user into the database
             $sql = "INSERT INTO Students (name, username, password) VALUES ('$name','$username', '$password')";

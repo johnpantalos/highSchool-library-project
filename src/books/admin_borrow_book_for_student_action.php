@@ -1,6 +1,13 @@
 <?php
+session_start();
 
-include '../database/database_connection.php';
+if (!isset($_SESSION['id'])) {
+    header("Location: ../users/login.php");
+    exit();
+}
+
+// Database configuration and connection
+include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {

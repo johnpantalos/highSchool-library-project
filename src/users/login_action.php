@@ -1,11 +1,19 @@
 <?php
 session_start();
 
-// Database configuration and connection
-include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
+// Database connection
+$servername = "localhost";
+$dbname = "userdb";
+$username = "root"; // default username
+$password = ""; // default password
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
-{
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $role = '';
@@ -13,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     // Check in admins table
     $stmt = $conn->prepare("SELECT id, password FROM admins WHERE username = ?");
     $stmt->bind_param("s", $username);
-
     $stmt->execute();
     $stmt->store_result();
 
@@ -38,18 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
     if ($role !== '') {
-        if ($password === $hashed_password) {
+        if (password_verify($password, $hashed_password)) {
             // Password is correct
-            $_SESSION['id'] = $id;
+            $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $role;
 
-            if($role === 'student') {
-                header("Location: ../student_dashboard.php");
-            }
-            else if ($role === 'admin'){
-                header("Location: ../admin_dashboard.php");
-            }
+            header("Location: welcome.php");
             exit();
         } else {
             echo "Invalid username or password.";
@@ -60,5 +62,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     $stmt->close();
 }
+
 $conn->close();
 ?>
