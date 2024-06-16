@@ -25,38 +25,38 @@ $interval = $date_borrowed->diff($current_date);
 
 if ($interval->days < 30) {
 
-    // Update details
-    $sql = "UPDATE BorrowRecords SET return_date='$currentDate' WHERE id='$id'";
+    $book_id = $borr_book['book_id'];
+    
+    // Fetch borrowed book details
+    $sql_b = "SELECT * FROM Books WHERE id='$book_id'";
+    $result_book = $conn->query($sql_b);
+    
+    if($result_book->num_rows > 0) $book = $result_book->fetch_assoc();
+    $updated_copies = intval($book['copies_available']) + 1;
+    $sql_bb = "UPDATE Books SET copies_available='$updated_copies' WHERE id='$book_id'";
 
-    if ($conn->query($sql) === TRUE) 
+    if ($conn->query($sql_bb) === TRUE) 
     {
-        $book_id = $borr_book['book_id'];
+        $student_id = $borr_book['student_id'];
 
         // Fetch borrowed book details
-        $sql_b = "SELECT * FROM Books WHERE id='$book_id'";
-        $result_book = $conn->query($sql_b);
-        if($result_book->num_rows > 0) $book = $result_book->fetch_assoc();
+        $sql_student = "SELECT * FROM Students WHERE id='$student_id'";
+        $result_student = $conn->query($sql_student);
 
-        $updated_copies = intval($book['copies_available']) + 1;
-        $sql_bb = "UPDATE Books SET copies_available='$updated_copies' WHERE id='$book_id'";
-
-        if ($conn->query($sql_bb) === TRUE) 
+        if($result_student->num_rows > 0) $student = $result_student->fetch_assoc();
+        $updated_count_bor = intval($student['borrowed_books_count']) - 1;
+        
+        $sql_bbr = "UPDATE Students SET borrowed_books_count='$updated_count_bor' WHERE id='$student_id'";
+        
+        if ($conn->query($sql_bbr) === TRUE) 
         {
-            $student_id = $borr_book['student_id'];
-
-            // Fetch borrowed book details
-            $sql_student = "SELECT * FROM Student WHERE id='$book_id'";
-            $result_student = $conn->query($sql_student);
-            if($result_student->num_rows > 0) $student = $result_student->fetch_assoc();
-
-            $updated_count_bor = intval($student['borrowed_books_count']) - 1;
-            $sql_bb = "UPDATE Students SET borrowed_books_count='$updated_count_bor' WHERE id='$student_id'";
-
-            if ($conn->query($sql_bb) === TRUE) 
+            // Update details
+            $sql = "UPDATE BorrowRecords SET return_date='$currentDate' WHERE id='$id'";
+            
+            if ($conn->query($sql) === TRUE) 
             {
-                // Redirect using JavaScript to go back 2 pages
-                // echo '<script type="text/javascript"> window.history.go(-2); </script>';
-                echo "<p style='text-align: center;'>Book successfully returned !</p>";
+                // Redirect using JavaScript to go back 1 page
+                echo "<h4 style='text-align: center; color: black;'>Book successfully returned !</h4>";
                 exit();
             }
             else
@@ -68,17 +68,19 @@ if ($interval->days < 30) {
         {
             echo "Error updating record: " . $conn->error;
         }
-    } else {
+    }
+    else
+    {
         echo "Error updating record: " . $conn->error;
     }
+
 }
 else
 {
-    echo "<p style='text-align: center;'>More than a month has passed since the book was borrowed. Book can't be returned</p>";
+    echo "<h4'>More than a month has passed since the book was borrowed. Book can't be returned</h4>";
 }
 
 $conn->close();
 
 exit();
 ?>
-<!-- DONE -->

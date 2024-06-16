@@ -27,51 +27,46 @@ $result_books = $conn->query($sql);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Register</title>
         <link rel="stylesheet" href="../css/style.css">
-        <style type="text/css">
-            html {
-                background-image: none;
-            }
-        </style>
 
 </head>
 <body>
-    <div class="container-fluid">
-
-        <table border='1' style='margin-left: auto; margin-right: auto; width:100%;'>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Copies Available</th>
-                <th>Actions</th>
-            </tr>
-            <?php 
-                if ($result_books->num_rows > 0) 
+    <h4>Here is the list of the Available Books : <h4><br>
+    <table border='1'>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Copies Available</th>
+            <th>Actions</th>
+        </tr>
+        <?php 
+            if ($result_books->num_rows > 0) 
+            { 
+                while($row = $result_books->fetch_assoc()) 
                 { 
-                    while($row = $result_books->fetch_assoc()) 
-                    { 
-                        echo "<tr>
-                                <td>" . $row['id'] . "</td>
-                                <td>" . $row['title'] . "</td>
-                                <td>" . $row['author'] . "</td>
-                                <td>" . $row['copies_available'] . "</td>
-                                <td>
-                                    <a href='./delete_book.php?book_id=" . $row['id'] . "' onclick='return confirm(\"Are you sure?\")'>Delete</a> |
-                                    <a href='./admin_borrow_book_for_student.php?book_id=" . $row['id']."'>Borrow For A Student</a> 
-                                </td>
-                            </tr>";
-                    }
-                } 
-                else 
-                {
-                    echo "<p style='text-align: center; color: black;'>No books found !</p>";
+                    $url = "./books/admin_borrow_book_for_student.php?book_id=" . $row['id'];
+                    echo "<tr>
+                            <td>" . $row['id'] . "</td>
+                            <td>" . $row['title'] . "</td>
+                            <td>" . $row['author'] . "</td>
+                            <td>" . $row['copies_available'] . "</td>
+                            <td>
+                ";?>
+                        <a href='./books/delete_book.php?book_id=<?php echo $row['id']; ?>' onclick='return confirm(\"Are you sure?\")'>Delete</a> |
+                        <button class='table-button' onclick="loadContent('<?php echo $url;?>');">Borrow For A Student</button>
+                <?php 
+                    echo "</td>
+                    </tr>";
                 }
-
-            ?>
-        </table>
-    </div>
+            } 
+            else 
+            {
+                echo "<p style='text-align: center; color: black;'>No books found !</p>";
+            }
+            $conn->close();
+        ?>
+    </table>
 
 </body>
 </html>
-<!-- DONE -->
  

@@ -33,7 +33,8 @@ else
 
             if ($conn->query($sql) === TRUE) 
             {
-                echo "<p style='text-align: center; color: black;'>Student registered successfully !</p>";
+                // echo "<p style='text-align: center; color: black;'>Admin registered successfully !</p>";
+                echo '<script>alert("Admin registered successfully !");</script>';
                 exit();
             } 
             else 
@@ -60,7 +61,10 @@ else
             
             if ($conn->query($sql) === TRUE) 
             {
-                echo '<p style"text-align: center; color: black">Student registered successfully !</p>';
+                // echo '<p style"text-align: center; color: black">Student registered successfully !</p>';
+                echo '<script>alert("Student registered successfully !");</script>';
+                // Redirected one page back 
+                echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
                 exit();
             } 
             else 

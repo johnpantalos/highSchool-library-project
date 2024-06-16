@@ -60,8 +60,9 @@ if($copies_of_book > 0)
                 
                 if ($conn->query($sql_update_borrowed_books_in_student) === TRUE) 
                 {
-                    // Redirect two pages back
-                    echo '<script language="JavaScript" type="text/javascript">history.go(-2);</script>';
+                    echo '<script>alert("Book borrowed successfully !");</script>';
+                    // Redirect one pages back
+                    echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
                     exit();
                 }
                 else
@@ -81,12 +82,18 @@ if($copies_of_book > 0)
     }
     else
     {
-        echo "You can't borrow this book! Student had reached the limit of borrowed books";
+        // echo "You can't borrow this book! Student had reached the limit of borrowed books";
+        echo '<script>alert("You can\'t borrow this book! Student had reached the limit of borrowed books");</script>';
+        // Redirect one pages back
+        echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
     }
 }
 else
 {
-    echo "You can't borrow this book! Copies Available: 0";
+    // echo "You can't borrow this book! Copies Available: 0";
+    echo '<script>alert("You can\'t borrow this book! Copies Available: 0 !");</script>';
+    // Redirect one pages back
+    echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
 }
 
 ?>

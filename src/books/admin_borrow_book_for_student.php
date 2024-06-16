@@ -17,8 +17,6 @@ $copies_available = $book_row['copies_available'];
 $sql_st = "SELECT * FROM Students";
 $result_students = $conn->query($sql_st);
 
-$conn->close();
-
 ?>
 
 <!DOCTYPE html>
@@ -44,44 +42,42 @@ $conn->close();
         </style>
 </head>
 <body>
-    <div class="container-big-2 orange_bg">
-        <h2>Borrow Book For Student</h2>
-        <form action="admin_borrow_book_for_student_action.php" class="borrow-book-form" method="POST">
-            <label for="ID">ID: </label>
-            <input type="text" name="id" value="<?php echo $book_id;?>" readonly><br>
-            
-            <label for="title">Title: </label>
-            <input type="text" name="title" value="<?php echo $title;?>" readonly><br>
-            
-            <label for="author">Author: </label>
-            <input type="text" name="author" value="<?php echo $author;?>" readonly><br>
-            
-            <label for="copies_available"> Copies available: </label>
-            <input type="text" name="copies_available" value="<?php echo $copies_available; ?>" readonly><br><br>
-            
-            <label for="student"> Please select the student who wants to borrow this book: </label>
-            <?php 
-                if ($result_students->num_rows > 0) 
+    <h2>Borrow Book For Student</h2>
+    <form action="./books/admin_borrow_book_for_student_action.php" class="universal-form" method="POST">
+        <label for="ID">ID: </label>
+        <input type="text" name="id" value="<?php echo $book_id;?>" readonly><br>
+        
+        <label for="title">Title: </label>
+        <input type="text" name="title" value="<?php echo $title;?>" readonly><br>
+        
+        <label for="author">Author: </label>
+        <input type="text" name="author" value="<?php echo $author;?>" readonly><br>
+        
+        <label for="copies_available"> Copies available: </label>
+        <input type="text" name="copies_available" value="<?php echo $copies_available; ?>" readonly><br><br>
+        
+        <label for="student"> Please select the student who wants to borrow this book: </label>
+        <?php 
+            if ($result_students->num_rows > 0) 
+            {
+                echo '<select name="student">';
+                while($row = $result_students->fetch_assoc()) 
                 {
-                    echo '<select name="student">';
-                    while($row = $result_students->fetch_assoc()) 
-                    {
-                        echo '<option value="' . $row['id'] . '" id="' . $row['id'] . '">' . htmlspecialchars($row['name']) . '</option>';   
-                    }
-                    echo "</select>";
+                    echo '<option value="' . $row['id'] . '" id="' . $row['id'] . '">' . htmlspecialchars($row['name']) . '</option>';   
                 }
-                else
-                {
-                    echo "No students found";
-                }
-            ?>
-            <br>
-            
-            <label for="date">Date</label>
-            <input type="date" onload="<?php echo date('Y-m-d'); ?>" class="form-control" id="date" name="date">
-            <br>
-            <input type="submit" value="Borrow">
-        </form>
-    </div>
+                echo "</select>";
+            }
+            else
+            {
+                echo "No students found";
+            }
+        ?>
+        <br>
+        
+        <label for="date">Date</label>
+        <input type="date" value="<?php echo date('Y-m-d'); $conn->close();?>" id="date" name="date">
+        <br>
+        <input type="submit" value="Borrow">
+    </form>
 </body>
 </html>

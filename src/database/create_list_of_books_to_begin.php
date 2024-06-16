@@ -4,38 +4,127 @@
 include './database_connection.php';
 
 // Insert user into the database
-$sql = "INSERT INTO Books (title, author, copies_available) VALUES 
-('Shahrukh Hussain', 'The widsom of mulla nasruddin', '1'), 
-('Deepa Agarwal', 'The tricky tales of vikram and the veta', '2'),
-('Anupa lal', 'Birbal the clever cduriter', '3'), 
-('classic advanture', 'stories', '6'), 
-('Anurima Chanda', 'As you like it', '8'), 
-('Lasantha rodrigo', 'much ado about nothing', '2'), 
-('R.L. Stine', 'Adhi raat ka hauwa', '5'), 
-('R.L. Stine', 'Katputli ka badla', '6'), 
-('R.L. Stine', 'shaitani khoon ka nashta', '2'), 
-('R.L. Stine', 'Daba hua dar', '1'), 
-('Guljar', 'Gopi gayen baga bayen', '0'), 
-('Frizzle liz', 'The maguc school bus the wild leaf ride', '3'), 
-('Frizzle liz', 'The magic school bus and the butterfly bunch', '5'),
-('Frizzle liz', 'The magic school bus fixes a bone', '3'),
-('Frizzle liz', 'The magic school bus whethers the storm', '10')";
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'The tricky tales of vikram and the veta', 'Deepa Agarwal',2
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'The tricky tales of vikram and the veta')";
+$conn->query($sql);
 
-// INSERT INTO EmailsRecebidos (De, Assunto, Data)
-//    VALUES (@_DE, @_ASSUNTO, @_DATA)
-//    WHERE NOT EXISTS ( SELECT * FROM EmailsRecebidos 
-//                    WHERE title = @_DE
-//                    AND author = @_ASSUNTO
+$sql = "INSERT INTO Books (title, author, copies_available)
+SELECT 'The magic school bus weathers the storm', 'Frizzle Liz', 10
+WHERE NOT EXISTS (
+    SELECT 1 
+    FROM Books 
+    WHERE title = 'The magic school bus weathers the storm'
+)";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'Birbal the clever cduriter', 'Anupa lal', 3
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'Birbal the clever cduriter')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'stories', 'classic advanture', 6
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'stories')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'As you like it', 'Anurima Chanda', 8
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'As you like it')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'much ado about nothing', 'Lasantha rodrigo', 2
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'much ado about nothing')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'Adhi raat ka hauwa', 'R.L. Stine', 5
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'Adhi raat ka hauwa')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'shaitani khoon ka nashta', 'R.L. Stine',  2
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'shaitani khoon ka nashta')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'Daba hua dar', 'R.L. Stine', 1
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'Daba hua dar')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'Gopi gayen baga bayen', 'Guljar', ' 0
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'Gopi gayen baga bayen')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'The maguc school bus the wild leaf ride', 'Frizzle liz', 3
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'The maguc school bus the wild leaf ride')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'The magic school bus and the butterfly bunch', 'Frizzle liz', 5
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'The magic school bus and the butterfly bunch')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'The magic school bus fixes a bone', 'Frizzle liz', 3
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'The magic school bus fixes a bone')";
+$conn->query($sql);
+
+$sql = "INSERT INTO Books (title, author, copies_available) 
+SELECT 'The magic school bus whethers the storm', 'Frizzle liz', 10
+WHERE NOT EXISTS (
+SELECT 1
+FROM Books 
+WHERE title = 'The magic school bus whethers the storm')";
 
 if ($conn->query($sql) === TRUE) 
 {
-    echo '<p style="text-align: center;"> List of books created successfully </p>';
+    echo '<p style="text-align: center; color: white; font-weight: bold;"> List of books created successfully </p>';
 
     // Fetch all Books created
     $sql = "SELECT * FROM Books";
     $result_books = $conn->query($sql);
 
-    // include '../books/show_available_books.php';
+    include '../books/show_available_books.php';
 } 
 else 
 {
@@ -51,32 +140,10 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <style type="text/css">
-            .container { background-color: #007bff00; }
-            .open-btn {background-color: #ad6823;}
-        </style>
     <title>Create a list of books for testing</title>
 </head>
 <body>
     <main>
-        <!-- IFRAME 1 -->
-        <button class="open-btn" onclick="openPopup()"><b>Show Books</b></button>
-                    
-        <div class="popup-container" id="popupContainer">
-            <div class="iframe-container">
-                <button class="close-btn" onclick="closePopup()">×</button>
-                <iframe src="../books/show_available_books.php"></iframe>
-            </div>
-        </div>
-        <script>
-            function openPopup() {
-                document.getElementById('popupContainer').classList.add('show');
-            }
-
-            function closePopup() {
-                document.getElementById('popupContainer').classList.remove('show');
-            }   
-        </script>
         <p style="text-align: center;"> <a href="../../index.php">Go Back</a> </p>
     </main>
 </body>

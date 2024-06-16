@@ -22,43 +22,43 @@
 <html>
     <head>
         <link rel="stylesheet" href="../css/style.css">
-        <style type="text/css">
-            html {
-                background-image: none;
-            }
-        </style>
         <title>Show Students</title>
     </head>
     <body>
-        <div class="container_fluid">
-            <table border="1" style="margin-left: auto; margin-right: auto; width: 100%;">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Username</th>
-                <th>Action</th>
-            </tr>
-            <?php
-                if ($result_students->num_rows > 0) {
-                    while($row = $result_students->fetch_assoc()) {
-                        echo "<tr>
-                                <td>" . $row['id'] . "</td>
-                                <td>" . $row['name'] . "</td>
-                                <td>" . $row['username'] . "</td>
-                                <td>
-                                    <a href='./edit_user.php?id=" . $row['id']."'>Edit</a> | 
-                                    <a href='./delete_user.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure?\")'>Delete</a>
-                                </td>
-                            </tr>";
-                    }
-                } else {
-                    echo "<p style='text-align: center;'>No students found !</p>";
+        <h4>Here is the list of the Students : </h4><br>
+        <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Action</th>
+        </tr>
+        <?php
+            if ($result_students->num_rows > 0) {
+                while($row = $result_students->fetch_assoc()) 
+                {
+                    $url = "./users/edit_user.php?id=" . $row['id'];
+                    echo "<tr>
+                            <td>" . $row['id'] . "</td>
+                            <td>" . $row['name'] . "</td>
+                            <td>" . $row['username'] . "</td>
+                            <td>
+                        ";
+                        ?>
+                        
+                        <button class='table-button' onclick="loadContent('<?php echo $url;?>');">Edit</button> |
+                        
+                        <?php echo "
+                        <a href='./users/delete_user.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure?\")'>Delete</a>
+                            </td>
+                        </tr>";
                 }
-                
-                $conn->close();
-            ?>
-            </table>
-        </div>
+            } else {
+                echo "<p style='text-align: center;'>No students found !</p>";
+            }
+            
+            $conn->close();
+        ?>
+        </table>
     </body>
 </html>
-<!-- DONE -->

@@ -22,8 +22,9 @@ if ($conn->query($sql) === TRUE)
 } 
 else 
 {
-    // echo "Error deleting record: " . $conn->error . "<br><br>";
-    echo "<p style='text-align: center;'>Can't delete this student, because he has borrowed books !</p>";
+    echo '<script>alert("Can\'t delete this student, because he has borrowed books !");</script>';
+    echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
+    // echo "<p style='text-align: center;'>Can't delete this student, because he has borrowed books !</p>";
 }
 
 $conn->close();

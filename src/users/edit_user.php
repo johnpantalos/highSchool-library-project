@@ -16,55 +16,29 @@ $sql = "SELECT * FROM Students WHERE id='$id'";
 $result = $conn->query($sql);
 $user = $result->fetch_assoc();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Update user details
-    $sql = "UPDATE Students SET name='$name', username='$username', password='$password' WHERE id='$id'";
-
-    if ($conn->query($sql) === TRUE) {
-        
-        // Redirect using JavaScript to go back 2 pages
-        // echo '<script type="text/javascript"> window.history.go(-1); </script>';
-        echo "<p style='text-align: center; color: black;'>Account changed successfully !</p>";
-        exit();
-    } else {
-        echo "Error updating record: " . $conn->error;
-    }
-}
-
 $conn->close();
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Edit User</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <style type="text/css">
-        html {
-            background-image: none;
-        }
-    </style>
-    <script>
-        function showPassword() {
-            var x = document.getElementById("pwd");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
+    <head>
+        <title>Edit User</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <script>
+            function showPassword() {
+                var x = document.getElementById("pwd");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
             }
-        }
-    </script>
-</head>
-<body>
-    <div class="container-big-2 orange_bg">
+        </script>
+    </head>
+    <body>
         <h2>Edit User</h2>
-        
         <p>Change user's data</p>
-        <form action="" class="edit-user-form" method="POST">
+        <form action="./users/edit_user_action.php?id=<?php echo $id;?>" class="universal-form" method="POST">
             <label for="name">Name: </label>
             <input type="text" name="name" value="<?php echo $user['name']; ?>" required>
             <label for="username">Username: </label>
@@ -73,7 +47,6 @@ $conn->close();
             <input type="password" name="password" value="<?php echo $user['password']; ?>" id="pwd" required>
             <span><input type="checkbox" onclick="showPassword()"> Show Password</span>
             <input type="submit" value="Update">
-    </form>
-    </div>
-</body>
+        </form>
+    </body>
 </html>

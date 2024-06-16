@@ -23,11 +23,10 @@
                 }
             }
         </script>
-</head>
-<body>
-    <div class="container-big-2 orange_bg">
+    </head>
+    <body>
         <h2>Register</h2>
-        <form action="register_action.php" class="register-user-form" method="POST">
+        <form action="./users/register_action.php" class="universal-form" method="POST">
             <label for="name">Name: </label>
             <input type="text" name="name" required>
             
@@ -50,7 +49,5 @@
             
             <input type="submit" value="Register">
         </form>
-
-    </div>
-</body>
+    </body>
 </html>
