@@ -68,7 +68,7 @@ if($result_student->num_rows > 0) $student = $result_student->fetch_assoc();
                     <li><a href="browse_catalog.php" class="sidebar-link active" data-target="navbar-books"> <i style="font-size:24px" class="fa">&#xf02d;</i> Books</a></li>
                     <li><a href="my_borrowed_books.php" class="sidebar-link" data-target="navbar-students">Account Settings</a></li>
 
-                    <li><a href="./users/logout.php" style="width:250px; position:fixed; bottom:50px; background-color: #3997e46e;"><i style="font-size:24px" class="fa">&#xf08b;</i> Logout</a></li>
+                    <li><a href="./users/logout.php" style="width:250px; position:fixed; bottom:50px;"><i style="font-size:24px" class="fa">&#xf08b;</i> Logout</a></li>
                 </ul>
             </div>
             <div class="main">
