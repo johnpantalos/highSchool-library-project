@@ -22,11 +22,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.container {
-    display: flex;
-    height: 100vh;
-}
-
 .main {
     flex: 1; /* Take the remaining width */
     background-color: #ecf0f1; /* Background color for main content */
@@ -38,7 +33,12 @@ body {
 
 }
 
-/* Container */
+/* Containers */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
 .container-1 {
     margin: 0 auto;
     padding: 20px;
@@ -62,10 +62,9 @@ body {
     text-align: center;
 }
 
+/* Rows */
 .top-row {
     height: 150px; /* Same height as the sidebar */
-    /* background-color: #bdc3c781; */
-    /* background-color: #0d98f48e; */
     background-color: #3997e4;
     border-top-left-radius: 20px; 
     color: white;
@@ -76,10 +75,8 @@ body {
 
 #bottomRow {
     flex: 1; /* Take the remaining height */
-    background-color: #ecf0f1; /* Background color for bottom row */
+    background-color: #ecf0f1; 
     padding: 20px;
-    /* padding-left: 40px; */
-    /* margin-left: 40px; */
     box-sizing: border-box;
     animation: fadeInAnimation ease .5s;
     animation-iteration-count: 1;
@@ -87,8 +84,13 @@ body {
 
     /* Fit screen size and after scroll */
     height:auto;
-    max-height:78%;
+    max-height:75%;
     overflow:auto; 
+}
+
+#bottomRow p {
+    color: black;
+    font-weight: bold;
 }
 
 @keyframes fadeInAnimation {
@@ -102,23 +104,17 @@ body {
 }
 
 
-
+/* Navigation Bar */
 #navbar-books, #navbar-students{
     display: flex;
     justify-content: space-around;
-    /* background-color: #34495e; */
-    /* background-color: #bdc3c7;  */
     background-image:linear-gradient( to bottom, #3997e4, #ecf0f193);
-    /* border-bottom: 4px solid #0d98f48e; */
-
     padding: 10px 0;
     padding-right: 5%;
 }
 
 .nav-button {
     background-color: #ffffff;
-    /* border-top-left-radius: 12px;
-    border-top-right-radius: 12px; */
     border-radius: 12px;
     border: none;
     color: rgb(0, 0, 0);
@@ -140,12 +136,10 @@ body {
 }
 
 .nav-button:hover {
-    color: #0d98f4; /* Change color on hover */
+    color: #0d98f4;
 }
 
-
 /* Sidebar Styling */
-
 .sidebar {
     width: 350px; /* Sidebar width */
     background-color: #2c3e5085; /* Background color for sidebar */
@@ -201,7 +195,6 @@ body {
     transition: margin-left 0.3s;
 }
 
-
 /* Tables */
 table {
     width: 80%;
@@ -231,14 +224,16 @@ tr:hover {
 }
 
 table a, .table-button {
-    padding: 20px;
+    padding: 10px;
     text-decoration: none;
+    cursor: pointer;
+    font-size: medium;
+    font-weight: 500;
     border: none;
     background-color: #3997e4;
     color: white;
     border-radius: 15px;
 }
-
 
 /* Forms */
 .login-form {
@@ -278,6 +273,20 @@ form input[type="email"] {
     font-size: 1.1em;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Apply styles to the date input field */
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 92%;
 }
 
 form input[type="submit"] {
@@ -340,6 +349,7 @@ p a:hover {
 }
 
 h4 {
+    text-align: center;
     color: black;
     font-weight: bold;
 }

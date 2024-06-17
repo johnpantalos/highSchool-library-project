@@ -22,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 // Check if passwords match
 if ($password !== $confirm_password) 
 {
-    echo "Passwords do not match. Please try again.";
+    // echo "Passwords do not match. Please try again.";
+    echo '<script>alert("Passwords do not match. Please try again !");</script>';
+    echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
 }
 else 
 {
@@ -32,7 +34,7 @@ else
         $sql_check = "SELECT * from Students WHERE username='$username';";
         $result_students = $conn->query($sql_check);
         $students = $result_students->fetch_assoc();
-        print_r($students);
+        // print_r($students);
         if($result_students->num_rows < 1)
         {
             // Insert user into the database
@@ -52,7 +54,9 @@ else
         }
         else
         {
-            echo "User already exists in Students table.";
+            // echo "User already exists in Students table.";
+            echo '<script>alert("User already exists in Students table !");</script>';
+            echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
         }
 
     }
@@ -82,7 +86,9 @@ else
         }
         else 
         {
-            echo "User already exists in Admins table.";
+            // echo "User already exists in Admins table.";
+            echo '<script>alert("User already exists in Admins table !");</script>';
+            echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
         }
     }
 }

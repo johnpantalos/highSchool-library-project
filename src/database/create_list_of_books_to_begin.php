@@ -124,7 +124,7 @@ if ($conn->query($sql) === TRUE)
     $sql = "SELECT * FROM Books";
     $result_books = $conn->query($sql);
 
-    include '../books/show_available_books.php';
+    // include '../books/show_available_books.php';
 } 
 else 
 {

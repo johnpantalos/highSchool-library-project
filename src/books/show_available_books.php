@@ -1,17 +1,17 @@
 <?php
     session_start();
 
-    if (!isset($_SESSION['id'])) {
-        header("Location: ../users/login.php");
-        exit();
-    }
+    // if (!isset($_SESSION['id'])) {
+    //     header("Location: ../users/login.php");
+    //     exit();
+    // }
 
     // Database configuration and connection
     include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
     // Fetch all Books created
     $sql = "SELECT * FROM Books";
-    $sql = "SELECT * FROM Books ORDER BY id";
+    // $sql = "SELECT * FROM Books ORDER BY id";
     $result_books = $conn->query($sql);
 
 ?>
@@ -25,7 +25,7 @@
     <body>
         <h4>Here is the list of Available Books : </h4><br>
 
-        <table border='1' style='margin-left: auto; margin-right: auto; width: 100%;'>
+        <table border='1'>
         <tr>
             <th>ID</th>
             <th>Title</th>

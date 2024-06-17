@@ -74,17 +74,17 @@ if($copies_of_book > 0)
                 }
                 else
                 {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    echo "Error: " . $sql_update_borrowed_books_in_student . "<br>" . $conn->error;
                 }
             } 
             else 
             {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                echo "Error: " . $sql_update_copies_available . "<br>" . $conn->error;
             }
         } 
         else 
         {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "Error: " . $sql_borr . "<br>" . $conn->error;
         }
     }
     else

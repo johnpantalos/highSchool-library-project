@@ -12,21 +12,48 @@
     // Get user ID from URL
     $id = intval($_GET['id']);
 
-    // Delete user
-    $sql = "DELETE FROM Students WHERE id='$id'";
-
-    if ($conn->query($sql) === TRUE) 
-    {
-        // Redirect using JavaScript to go back 1 page
-        echo '<script type="text/javascript"> window.history.go(-1); </script>';
-        exit();
-    } 
-    else 
-    {
-        echo '<script>alert("Can\'t delete this student, because he has/had borrowed books. !");</script>';
-        echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
-        // echo "<p style='text-align: center;'>Can't delete this student, because he has borrowed books !</p>";
+    function deleteStudent($student_id) {
+        global $conn;
+        // Fetch student
+        $sql = "SELECT * FROM Students WHERE id = '$student_id'";
+        $result_books = $conn->query($sql);
+        if ($result_books->num_rows > 0) 
+        { 
+            $row = $result_books->fetch_assoc();
+            if($row['borrowed_books_count'] > 0){
+                echo '<script>alert("You can\'t delete this student because he has borrowed books !");</script>';
+            }   
+            else
+            {
+                // Prepare and execute the statement to delete related borrow records first
+                $sql_delete_borrow_records = "DELETE FROM BorrowRecords WHERE student_id = ?";
+                $stmt = $conn->prepare($sql_delete_borrow_records);
+                if ($stmt) {
+                    $stmt->bind_param("i", $student_id);
+                    $stmt->execute();
+                    $stmt->close();
+                } else {
+                    echo "Error preparing statement: " . $conn->error . "<br>";
+                }
+            
+                // Prepare and execute the statement to delete the student
+                $sql_delete_student = "DELETE FROM Students WHERE id = ?";
+                $stmt = $conn->prepare($sql_delete_student);
+                if ($stmt) {
+                    $stmt->bind_param("i", $student_id);
+                    $stmt->execute();
+                    $stmt->close();
+                } else {
+                    echo "Error preparing statement: " . $conn->error . "<br>";
+                }
+                // echo "Student and related borrow records deleted successfully<br>";
+                echo '<script>alert("Student and related borrow records deleted successfully !");</script>';
+            }
+            echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
+        }
     }
+
+    deleteStudent($id);
 
     $conn->close();
 ?>

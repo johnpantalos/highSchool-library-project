@@ -49,7 +49,7 @@ $result_students = $conn->query($sql_st);
 </head>
 <body>
     <h2>Borrow Book For Student</h2>
-    <form action="./books/admin_borrow_book_for_student_action.php" class="universal-form" method="POST">
+    <form action="./books/admin_borrow_book_for_student_action.php" class="borrow-book-form" method="POST">
         <label for="ID">ID: </label>
         <input type="text" name="id" value="<?php echo $book_id;?>" readonly><br>
         
@@ -75,7 +75,7 @@ $result_students = $conn->query($sql_st);
             }
             else
             {
-                echo "No students found";
+                echo "<h4>No students found</h4>";
             }
         ?>
         <br>
