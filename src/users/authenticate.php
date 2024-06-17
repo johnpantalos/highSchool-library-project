@@ -52,10 +52,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             }
             exit();
         } else {
-            echo "Invalid username or password.";
+            // echo "Invalid username or password.";
+            echo '<script>alert("Invalid username or password !");</script>';
+            echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
         }
     } else {
-        echo "Invalid username or password.";
+        // echo "Invalid username or password.";
+        echo '<script>alert("Invalid username or password !");</script>';
+        echo '<script language="JavaScript" type="text/javascript">history.go(-1);</script>';
     }
 
     $stmt->close();
