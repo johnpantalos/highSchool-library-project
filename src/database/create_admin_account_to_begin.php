@@ -4,7 +4,7 @@
 include 'database_connection.php';
 
 // Insert user into the database
-$sql = "INSERT INTO Admins (name, username, password) VALUES ('admin', 'admin', 'admin')";
+$sql = "INSERT INTO admins (name, username, password) VALUES ('admin', 'admin', 'admin')";
 
 if ($conn->query($sql) === TRUE) 
 {

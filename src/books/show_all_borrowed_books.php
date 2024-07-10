@@ -10,7 +10,7 @@
     include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname 
     
     // Fetch all Books created
-    $sql = "SELECT * FROM BorrowRecords";
+    $sql = "SELECT * FROM borrowrecords";
     // $sql = "SELECT * FROM BorrowRecords ORDER BY id";
 
 
@@ -45,7 +45,7 @@
                     $url = "./books/return_borrowed_book.php?id=" . $row['id'];
 
                     $book_id = $row['book_id'];
-                    $sql_books = "SELECT * FROM Books WHERE id='$book_id'";
+                    $sql_books = "SELECT * FROM books WHERE id='$book_id'";
                     $result_books = $conn->query($sql_books);
                     if($result_books->num_rows > 0) $book = $result_books->fetch_assoc();
                     

@@ -32,7 +32,7 @@ $newDate = $dateObj->format('Y-m-d');
 
 
 // Fetch Book 
-$sql_b = "SELECT * FROM Books WHERE id='$book_id'";
+$sql_b = "SELECT * FROM books WHERE id='$book_id'";
 $result_books = $conn->query($sql_b);
 if($result_books->num_rows > 0) $book_want_to_borrow = $result_books->fetch_assoc();
 
@@ -50,14 +50,14 @@ if($copies_of_book > 0)
     if($borrowed_books_count < 3)
     {
         // Insert user into the database
-        $sql_borr = "INSERT INTO BorrowRecords (student_id, book_id, borrow_date, due_date, return_date) 
+        $sql_borr = "INSERT INTO borrowrecords (student_id, book_id, borrow_date, due_date, return_date) 
         VALUES ('$student_id', '$book_id' , '$date_borrowed', '$newDate', 'null')";
 
         if ($conn->query($sql_borr) === TRUE) 
         {
             // Update Book Copies Available Variable (-1)
             $copies_of_book = intval($copies_of_book) - 1;
-            $sql_update_copies_available = "UPDATE Books SET copies_available='$copies_of_book' WHERE id='$book_id'";
+            $sql_update_copies_available = "UPDATE books SET copies_available='$copies_of_book' WHERE id='$book_id'";
 
             if ($conn->query($sql_update_copies_available) === TRUE) 
             {

@@ -13,7 +13,7 @@
     $Borrowed_id = $_GET['id'];
 
     // Fetch borrowed book details
-    $sql = "SELECT * FROM BorrowRecords WHERE id='$Borrowed_id'";
+    $sql = "SELECT * FROM borrowrecords WHERE id='$Borrowed_id'";
     $result_bor_book = $conn->query($sql);
     $borr_book = null;
     if($result_bor_book->num_rows > 0) $borr_book = $result_bor_book->fetch_assoc();
@@ -34,30 +34,30 @@
         $book_id = $borr_book['book_id'];
         
         // Fetch borrowed book details
-        $sql_b = "SELECT * FROM Books WHERE id='$book_id'";
+        $sql_b = "SELECT * FROM books WHERE id='$book_id'";
         $result_book = $conn->query($sql_b);
         
         if($result_book->num_rows > 0) $book = $result_book->fetch_assoc();
         $updated_copies = intval($book['copies_available']) + 1;
-        $sql_bb = "UPDATE Books SET copies_available='$updated_copies' WHERE id='$book_id'";
+        $sql_bb = "UPDATE books SET copies_available='$updated_copies' WHERE id='$book_id'";
 
         if ($conn->query($sql_bb) === TRUE) 
         {
             $student_id = $borr_book['student_id'];
 
             // Fetch borrowed book details
-            $sql_student = "SELECT * FROM Students WHERE id='$student_id'";
+            $sql_student = "SELECT * FROM students WHERE id='$student_id'";
             $result_student = $conn->query($sql_student);
 
             if($result_student->num_rows > 0) $student = $result_student->fetch_assoc();
             $updated_count_bor = intval($student['borrowed_books_count']) - 1;
             
-            $sql_bbr = "UPDATE Students SET borrowed_books_count='$updated_count_bor' WHERE id='$student_id'";
+            $sql_bbr = "UPDATE students SET borrowed_books_count='$updated_count_bor' WHERE id='$student_id'";
             
             if ($conn->query($sql_bbr) === TRUE) 
             {
                 // Update details
-                $sql = "UPDATE BorrowRecords SET return_date='$currentDate' WHERE id='$Borrowed_id'";
+                $sql = "UPDATE borrowrecords SET return_date='$currentDate' WHERE id='$Borrowed_id'";
                 
                 if ($conn->query($sql) === TRUE) 
                 {

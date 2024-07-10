@@ -12,11 +12,11 @@ include "./database/database_connection.php"; // Defines the variables :  $serve
 $id = $_SESSION['id'];
 
 // Fetch all Books created
-$sql = "SELECT * FROM Books";
+$sql = "SELECT * FROM books";
 $result_books = $conn->query($sql);
 
 // Fetch Books borrowed by this user (id)
-$sql_s = "SELECT * FROM Students WHERE id='$id'"; 
+$sql_s = "SELECT * FROM students WHERE id='$id'"; 
 $result_student = $conn->query($sql_s);
 if($result_student->num_rows > 0) $student = $result_student->fetch_assoc();
 

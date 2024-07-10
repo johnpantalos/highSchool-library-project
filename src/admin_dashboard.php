@@ -12,7 +12,7 @@ include "./database/database_connection.php"; // Defines the variables :  $serve
 $id = $_SESSION['id'];
 
 // Fetch user details
-$sql = "SELECT * FROM Admins WHERE id='$id'";
+$sql = "SELECT * FROM admins WHERE id='$id'";
 $result = $conn->query($sql);
 $user = $result->fetch_assoc();
 

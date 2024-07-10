@@ -10,7 +10,7 @@ if (!isset($_SESSION['id'])) {
 include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
 // Fetch all Books created
-$sql = "SELECT * FROM Books";
+$sql = "SELECT * FROM books";
 $result_books = $conn->query($sql);
 
 ?>

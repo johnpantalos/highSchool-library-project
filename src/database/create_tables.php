@@ -1,7 +1,7 @@
 <?php
 
 // SQL to create Admins table
-$sql_Admins = "CREATE TABLE IF NOT EXISTS Admins (
+$sql_Admins = "CREATE TABLE IF NOT EXISTS admins (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     username VARCHAR(30) NOT NULL UNIQUE,
@@ -17,7 +17,7 @@ if ($conn->query($sql_Admins) === TRUE) {
 
 
 // SQL to create Students table
-$sql_students = "CREATE TABLE IF NOT EXISTS Students (
+$sql_students = "CREATE TABLE IF NOT EXISTS students (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     username VARCHAR(30) NOT NULL UNIQUE,
@@ -34,7 +34,7 @@ if ($conn->query($sql_students) === TRUE) {
 
 
 // SQL to create Books table
-$sql_books = "CREATE TABLE IF NOT EXISTS Books (
+$sql_books = "CREATE TABLE IF NOT EXISTS books (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
@@ -49,7 +49,7 @@ if ($conn->query($sql_books) === TRUE) {
 
 
 // SQL to create BorrowRecords table
-$sql_borrow_records = "CREATE TABLE IF NOT EXISTS BorrowRecords (
+$sql_borrow_records = "CREATE TABLE IF NOT EXISTS borrowrecords (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     student_id INT(6) UNSIGNED NOT NULL,
     book_id INT(6) UNSIGNED NOT NULL,

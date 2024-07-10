@@ -13,7 +13,7 @@ include "../database/database_connection.php"; // Defines the variables :  $serv
 $id = $_GET['id'];
 
 // Fetch user details
-$sql = "SELECT * FROM Students WHERE id='$id'";
+$sql = "SELECT * FROM students WHERE id='$id'";
 $result = $conn->query($sql);
 $user = $result->fetch_assoc();
 

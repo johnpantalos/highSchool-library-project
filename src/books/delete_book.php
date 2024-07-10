@@ -16,7 +16,7 @@
         global $conn;
 
         // Fetch norrowed book from database
-        $sql = "SELECT * FROM BorrowRecords WHERE book_id = '$book_id'";
+        $sql = "SELECT * FROM borrowrecords WHERE book_id = '$book_id'";
         $result_bor_books = $conn->query($sql);
         if ($result_bor_books->num_rows > 0) 
         {
@@ -25,7 +25,7 @@
                 $student_id = $row['student_id'];
                 
                 // Fetch norrowed book from database
-                $sql_s = "SELECT * FROM Students WHERE id = '$student_id'";
+                $sql_s = "SELECT * FROM students WHERE id = '$student_id'";
                 $result_student = $conn->query($sql_s);
                 
                 if ($result_student->num_rows > 0) 
@@ -36,11 +36,11 @@
                         $borrowed_books_count--;
                     }
                     
-                    $sql_update_count_br_books = "UPDATE Students SET borrowed_books_count='$borrowed_books_count' WHERE id='$student_id'";
+                    $sql_update_count_br_books = "UPDATE students SET borrowed_books_count='$borrowed_books_count' WHERE id='$student_id'";
                     if ($conn->query($sql_update_count_br_books) === TRUE) 
                     {    
                         // Prepare and execute the statement to delete related borrow records first
-                        $sql_delete_borrow_records = "DELETE FROM BorrowRecords WHERE book_id = ?";
+                        $sql_delete_borrow_records = "DELETE FROM borrowrecords WHERE book_id = ?";
                         $stmt = $conn->prepare($sql_delete_borrow_records);
                         if ($stmt) {
                             $stmt->bind_param("i", $book_id);
@@ -63,7 +63,7 @@
                     
         }
         // Prepare and execute the statement to delete the book
-        $sql_delete_book = "DELETE FROM Books WHERE id = ?";
+        $sql_delete_book = "DELETE FROM books WHERE id = ?";
         $stmt = $conn->prepare($sql_delete_book);
         if ($stmt) {
             $stmt->bind_param("i", $book_id);

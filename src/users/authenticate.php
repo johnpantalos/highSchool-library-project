@@ -4,8 +4,7 @@ session_start();
 // Database configuration and connection
 include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
-{
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $role = '';
@@ -44,10 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $role;
 
-            if($role === 'student') {
+            if ($role === 'student') {
                 header("Location: ../student_dashboard.php");
-            }
-            else if ($role === 'admin'){
+            } else if ($role === 'admin') {
                 header("Location: ../admin_dashboard.php");
             }
             exit();

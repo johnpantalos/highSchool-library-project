@@ -18,7 +18,7 @@
     }
 
     // Insert user into the database
-    $sql = "INSERT INTO Books (title, author, copies_available) VALUES ('$title', '$author' , '$copies_available')";
+    $sql = "INSERT INTO books (title, author, copies_available) VALUES ('$title', '$author' , '$copies_available')";
 
     if ($conn->query($sql) === TRUE) 
     {

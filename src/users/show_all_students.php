@@ -10,7 +10,7 @@
     include "../database/database_connection.php"; // Defines the variables :  $servername, $username, $password, $dbname
     
     // Fetch all Students
-    $sql = "SELECT * FROM Students";
+    $sql = "SELECT * FROM students";
     $result_students = $conn->query($sql);
 
 ?>

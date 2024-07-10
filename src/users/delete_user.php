@@ -15,7 +15,7 @@
     function deleteStudent($student_id) {
         global $conn;
         // Fetch student
-        $sql = "SELECT * FROM Students WHERE id = '$student_id'";
+        $sql = "SELECT * FROM students WHERE id = '$student_id'";
         $result_books = $conn->query($sql);
         if ($result_books->num_rows > 0) 
         { 
@@ -26,7 +26,7 @@
             else
             {
                 // Prepare and execute the statement to delete related borrow records first
-                $sql_delete_borrow_records = "DELETE FROM BorrowRecords WHERE student_id = ?";
+                $sql_delete_borrow_records = "DELETE FROM borrowrecords WHERE student_id = ?";
                 $stmt = $conn->prepare($sql_delete_borrow_records);
                 if ($stmt) {
                     $stmt->bind_param("i", $student_id);
@@ -37,7 +37,7 @@
                 }
             
                 // Prepare and execute the statement to delete the student
-                $sql_delete_student = "DELETE FROM Students WHERE id = ?";
+                $sql_delete_student = "DELETE FROM students WHERE id = ?";
                 $stmt = $conn->prepare($sql_delete_student);
                 if ($stmt) {
                     $stmt->bind_param("i", $student_id);

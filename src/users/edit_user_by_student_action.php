@@ -13,7 +13,7 @@ include "../database/database_connection.php"; // Defines the variables :  $serv
 $id = $_SESSION['id'];
 
 // Fetch user details
-$sql = "SELECT * FROM Students WHERE id='$id'";
+$sql = "SELECT * FROM students WHERE id='$id'";
 $result = $conn->query($sql);
 $user = $result->fetch_assoc();
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Update user details
-    $sql = "UPDATE Students SET name='$name', username='$username', password='$password' WHERE id='$id'";
+    $sql = "UPDATE students SET name='$name', username='$username', password='$password' WHERE id='$id'";
 
     if ($conn->query($sql) === TRUE) 
     {

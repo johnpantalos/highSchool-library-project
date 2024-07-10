@@ -31,14 +31,14 @@ else
     if($user_type === 'admin')
     {
         // Check if this username already exists in Students table
-        $sql_check = "SELECT * from Students WHERE username='$username';";
+        $sql_check = "SELECT * from students WHERE username='$username';";
         $result_students = $conn->query($sql_check);
         $students = $result_students->fetch_assoc();
         // print_r($students);
         if($result_students->num_rows < 1)
         {
             // Insert user into the database
-            $sql = "INSERT INTO Admins (name, username, password) VALUES ('$name','$username', '$password')";
+            $sql = "INSERT INTO admins (name, username, password) VALUES ('$name','$username', '$password')";
 
             if ($conn->query($sql) === TRUE) 
             {
@@ -63,13 +63,13 @@ else
     else if($user_type === 'student') 
     {
         // Check if this username already exists in Admins table
-        $sql_check = "SELECT * from Admins WHERE username='$username';";
+        $sql_check = "SELECT * from admins WHERE username='$username';";
         $result_students = $conn->query($sql_check);
 
         if($result_students->num_rows === 0)
         {
             // Insert user into the database
-            $sql = "INSERT INTO Students (name, username, password) VALUES ('$name','$username', '$password')";
+            $sql = "INSERT INTO students (name, username, password) VALUES ('$name','$username', '$password')";
             
             if ($conn->query($sql) === TRUE) 
             {

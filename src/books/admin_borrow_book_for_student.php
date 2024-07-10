@@ -11,7 +11,7 @@ include "../database/database_connection.php"; // Defines the variables :  $serv
 
 $book_id = intval($_GET['book_id']);
 
-$sql = "SELECT * FROM Books WHERE id='$book_id'";
+$sql = "SELECT * FROM books WHERE id='$book_id'";
 $result_book = $conn->query($sql);
 $book_row = $result_book->fetch_assoc();
 
@@ -20,7 +20,7 @@ $author = $book_row['author'];
 $copies_available = $book_row['copies_available'];
 
 // Fetch all Students
-$sql_st = "SELECT * FROM Students";
+$sql_st = "SELECT * FROM students";
 $result_students = $conn->query($sql_st);
 
 ?>

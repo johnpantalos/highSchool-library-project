@@ -14,7 +14,7 @@ $id = $_SESSION['id'];
 
 
 // Fetch user details
-$sql = "SELECT * FROM Students WHERE id='$id'";
+$sql = "SELECT * FROM students WHERE id='$id'";
 $result = $conn->query($sql);
 $student = $result->fetch_assoc();
 
