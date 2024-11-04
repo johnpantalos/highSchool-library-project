@@ -2,11 +2,6 @@
 
 This project runs on Windows 10 using XAMPP.
 
-
-# You can see the project that is online in a free domain here: [LINK](http://highschoollibraryportal.rf.gd/src/users/login.php)
-
-
-
 Here's how you can set it up and run it using XAMPP:
 
 ## Step 1 : Install In Windows 10:
